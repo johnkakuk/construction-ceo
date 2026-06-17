@@ -1,0 +1,58 @@
+/* next/font/google provides Archivo + IBM Plex Mono — no @import url() needed */
+@import "tailwindcss";
+@import "./design-system/tokens/colors.css";
+@import "./design-system/tokens/typography.css";
+@import "./design-system/tokens/spacing.css";
+@import "./design-system/tokens/aliases.css";
+@import "./design-system/tokens/base.css";
+
+@plugin "@tailwindcss/typography";
+
+/* Wire next/font CSS variables into the DS font tokens */
+:root {
+  --font-display: var(--font-archivo), 'Helvetica Neue', Arial, sans-serif;
+  --font-sans:    var(--font-archivo), 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    var(--font-ibm-mono), 'SFMono-Regular', Menlo, monospace;
+
+  /* Additional shadows not in spacing tokens */
+  --shadow-card: 0 4px 16px rgba(20,18,12,0.10), 0 1px 4px rgba(20,18,12,0.07);
+  --shadow-md:   0 4px 12px rgba(20,18,12,0.10), 0 2px 4px rgba(20,18,12,0.06);
+  --shadow-lg:   0 8px 24px rgba(20,18,12,0.12), 0 2px 6px rgba(20,18,12,0.08);
+
+  /* Radius aliases used in DS components */
+  --radius-xs:   2px;
+  --radius-pill: 9999px;
+}
+
+.cc-container {
+  width: min(100% - 56px, 1200px);
+  margin-inline: auto;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+
+/* react-h5-audio-player skin */
+.rhap_container.cc-audio-player {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  background: var(--surface-card);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+}
+.cc-audio-player .rhap_main-controls-button,
+.cc-audio-player .rhap_volume-button,
+.cc-audio-player .rhap_repeat-button { color: var(--ink-900); }
+.cc-audio-player .rhap_progress-filled,
+.cc-audio-player .rhap_progress-indicator,
+.cc-audio-player .rhap_volume-filled,
+.cc-audio-player .rhap_volume-indicator { background-color: var(--accent); }
+.cc-audio-player .rhap_time {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+

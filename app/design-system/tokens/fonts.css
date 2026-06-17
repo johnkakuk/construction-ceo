@@ -1,0 +1,13 @@
+/* ============================================================
+   Construction CEO — Webfonts
+   ------------------------------------------------------------
+   SUBSTITUTION NOTE: No brand fonts were supplied. These are
+   close Google Fonts stand-ins chosen for an executive, Swiss /
+   technical feel:
+     - Archivo        → display + UI workhorse (grotesk, precise)
+     - IBM Plex Mono  → technical labels, episode #s, timecodes
+   Swap the @import + --font-* tokens when real licensed fonts
+   (e.g. a Neue Haas / Söhne-class grotesk) are available.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');

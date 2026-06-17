@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="160" viewBox="0 0 430 160" role="img" aria-label="Construction CEO">
+  <rect x="0" y="0" width="160" height="160" rx="8" fill="#16140F"></rect>
+  <g font-family="Archivo, &#39;Arial Black&#39;, &#39;Helvetica Neue&#39;, Arial, sans-serif" font-weight="900" font-size="88" letter-spacing="-6" text-anchor="middle">
+    <text x="60" y="102" fill="#F5F2E9">C</text>
+    <text x="104" y="102" fill="#E1AF22">C</text>
+  </g>
+  <rect x="34" y="124" width="92" height="8" fill="#E1AF22"></rect>
+  <text x="188" y="64" fill="#6B665A" font-family="Archivo, Arial, &#39;Helvetica Neue&#39;, sans-serif" font-weight="600" font-size="21" letter-spacing="0.6">CONSTRUCTION</text>
+  <text x="186" y="122" fill="#16140F" font-family="Archivo, &#39;Arial Black&#39;, &#39;Helvetica Neue&#39;, Arial, sans-serif" font-weight="900" font-size="50" letter-spacing="-1.5">CEO<tspan fill="#E1AF22">.</tspan></text>
+</svg>

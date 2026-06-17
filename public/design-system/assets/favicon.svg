@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Construction CEO">
+  <rect width="64" height="64" rx="10" fill="#16140F"></rect>
+  <g font-family="Archivo, &#39;Arial Black&#39;, Arial, sans-serif" font-weight="900" font-size="36" letter-spacing="-3" text-anchor="middle">
+    <text x="24" y="41" fill="#F5F2E9">C</text>
+    <text x="42" y="41" fill="#E1AF22">C</text>
+  </g>
+  <rect x="14" y="49" width="36" height="4" fill="#E1AF22"></rect>
+</svg>

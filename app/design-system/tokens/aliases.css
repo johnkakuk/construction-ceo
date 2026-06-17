@@ -1,0 +1,37 @@
+/* ============================================================
+   Construction CEO — Token aliases / compatibility layer
+   Bridges alternate semantic names used across components and
+   guideline cards onto the canonical tokens in colors.css etc.
+   Also fills in intermediate scale steps.
+   ============================================================ */
+
+:root {
+  /* ---- Extra neutral scale steps ---- */
+  --steel-600: #565145;             /* @kind color */
+  --steel-300: #B4AEA0;             /* @kind color */
+  --steel-200: #C9C4B8;             /* @kind color */
+  --paper:      var(--paper-0);     /* @kind color */
+  --paper-warm: var(--paper-100);   /* @kind color */
+
+  /* ---- Text aliases ---- */
+  --text-primary:   var(--text-strong);   /* @kind color */
+  --text-secondary: var(--text-muted);     /* @kind color */
+  --text-accent:    var(--ochre-700);      /* @kind color */
+
+  /* ---- Border aliases ---- */
+  --border-default: var(--border-strong);  /* @kind color */
+  --border-subtle:  var(--border-soft);    /* @kind color */
+  --border-inverse: var(--border-on-dark); /* @kind color */
+
+  /* ---- Status background washes ---- */
+  --success-bg: rgba(66,122,92,0.12);   /* @kind color */
+  --danger-bg:  rgba(168,54,46,0.10);   /* @kind color */
+  --warning-bg: rgba(184,116,58,0.14);  /* @kind color */
+  --info-bg:    rgba(78,103,124,0.12);  /* @kind color */
+
+  /* ---- Motion + focus aliases ---- */
+  --duration-fast: var(--dur-fast);   /* @kind other */
+  --duration-base: var(--dur-base);   /* @kind other */
+  --ease-standard: var(--ease-out);   /* @kind other */
+  --shadow-focus:  0 0 0 3px var(--focus-ring);  /* @kind shadow */
+}

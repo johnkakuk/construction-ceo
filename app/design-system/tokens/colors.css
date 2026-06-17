@@ -1,0 +1,99 @@
+/* ============================================================
+   Construction CEO — Color System
+   Industrial warmth: warm charcoal ink + steel/concrete
+   neutrals, punctuated by a confident construction yellow-ochre.
+   ============================================================ */
+
+:root {
+  /* ---- Ink / warm charcoal (text + dark surfaces) ---- */
+  --ink-950: #0F0E0B;   /* deepest, true background black */
+  --ink-900: #16140F;   /* primary dark surface */
+  --ink-800: #1E1B15;
+  --ink-700: #2A261E;
+  --ink-600: #393429;
+  --ink-500: #4A4537;
+
+  /* ---- Steel / concrete neutrals ---- */
+  --steel-500: #6B665A;  /* mid steel */
+  --steel-400: #8C8779;
+  --concrete-300: #B4AEA0;
+  --concrete-200: #D2CCBE;
+  --concrete-100: #E4DFD3;
+
+  /* ---- Paper (warm light surfaces) ---- */
+  --paper-100: #EFEBE0;
+  --paper-50:  #F5F2E9;
+  --paper-0:   #FBF9F2;  /* lightest page background */
+  --white:     #FFFFFF;
+
+  /* ---- Ochre (construction yellow — primary brand punctuation) ---- */
+   --ochre-700: #8E6812;
+   --ochre-600: #B08218;
+   --ochre-500: #E1AF22;  /* primary accent */
+   --ochre-400: #E7C04C;
+   --ochre-300: #EDD27A;
+   --ochre-200: #F4E0AB;
+   --ochre-100: #F8ECCF;
+   --ochre-50:  #FCF6E5;
+
+  /* ---- Orange (warning / caution — the warm orange we punctuate with sparingly) ---- */
+  --orange-600: #9A5C2B;
+  --orange-500: #B8743A;
+
+  /* ---- Steel blue (cool secondary — links/info, sparing) ---- */
+  --steelblue-600: #3C5061;
+  --steelblue-500: #4E677C;
+  --steelblue-300: #8FA4B4;
+
+  /* ---- Semantic status hues ---- */
+  --green-600: #356049;
+  --green-500: #427A5C;
+  --red-600:   #8E2A24;
+  --red-500:   #A8362E;
+  --gold-500:  var(--ochre-500);
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in product code
+     ============================================================ */
+
+  /* Surfaces (light theme is the default brand surface) */
+  --surface-page:      var(--paper-0);
+  --surface-raised:    var(--white);
+  --surface-sunken:    var(--paper-100);
+  --surface-card:      var(--white);
+  --surface-inverse:   var(--ink-900);
+  --surface-inverse-2: var(--ink-800);
+
+  /* Text */
+  --text-strong:    var(--ink-900);
+  --text-body:      var(--ink-700);
+  --text-muted:     var(--steel-500);
+  --text-faint:     var(--steel-400);
+  --text-on-dark:   var(--paper-50);
+  --text-on-dark-muted: var(--concrete-300);
+  --text-on-accent: var(--ink-950);
+
+  /* Accent semantics */
+  --accent:         var(--ochre-500);
+  --accent-hover:   var(--ochre-400);
+  --accent-press:   var(--ochre-700);
+  --accent-soft:    var(--ochre-50);
+  --accent-border:  var(--ochre-100);
+  --link:           var(--steelblue-600);
+
+  /* Lines + borders */
+  --border-strong:  var(--concrete-300);
+  --border:         var(--concrete-200);
+  --border-soft:    var(--concrete-100);
+  --border-on-dark: rgba(255,255,255,0.12);
+  --hairline:       rgba(20,18,12,0.10);
+
+  /* Status */
+  --success: var(--green-500);
+  --danger:  var(--red-500);
+  --warning: var(--orange-500);
+  --info:    var(--steelblue-500);
+
+  /* Focus ring */
+  --focus-ring: rgba(225,175,34,0.45);
+}
