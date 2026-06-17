@@ -27,7 +27,7 @@ const ArrowIcon = () => (
   </svg>
 )
 
-function IconBtn({ label, onClick, children }: { label: string; onClick?: () => void; children: React.ReactNode }) {
+function IconBtn({ label, onClick, children, className }: { label: string; onClick?: () => void; children: React.ReactNode; className?: string }) {
   const [hover, setHover] = useState(false)
   return (
     <button
@@ -36,6 +36,7 @@ function IconBtn({ label, onClick, children }: { label: string; onClick?: () => 
       onClick={onClick}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      className={className}
       style={{
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
         width: 40, height: 40,
@@ -69,7 +70,7 @@ function buildSpeakerMap(transcript: string): Map<string, string> {
 }
 
 /* ---- Hero ---- */
-function EpisodeHero({ episode }: { episode: Episode }) {
+function EpisodeHero({ episode, episodeNumber }: { episode: Episode; episodeNumber?: number }) {
   const { playingSlug, toggle } = useAudio()
   const isPlaying = playingSlug === episode.slug
   const guestRole = [episode.guestTitle, episode.guestCompany].filter(Boolean).join(' · ')
@@ -86,13 +87,13 @@ function EpisodeHero({ episode }: { episode: Episode }) {
           <span style={{ color: 'var(--ochre-400)', overflow: 'hidden', textOverflow: 'ellipsis' }}>{episode.title}</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 48, alignItems: 'center' }}>
+        <div className="cc-episode-hero-grid">
           {/* Left column */}
           <div>
             {/* Badges */}
             <div style={{ display: 'flex', gap: 8, marginBottom: 18 }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', height: 26, padding: '0 10px', borderRadius: 'var(--radius-sm)', background: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-950)' }}>
-                Episode
+                {episodeNumber != null ? `Episode ${episodeNumber}` : 'Episode'}
               </span>
               {episode.duration && (
                 <span style={{ display: 'inline-flex', alignItems: 'center', height: 26, padding: '0 10px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-inverse)', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', color: 'var(--steel-300)' }}>
@@ -124,7 +125,7 @@ function EpisodeHero({ episode }: { episode: Episode }) {
             </div>
 
             {/* Actions */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div className="cc-btn-row" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <button
                 type="button"
                 onClick={() => toggle(episode)}
@@ -149,13 +150,13 @@ function EpisodeHero({ episode }: { episode: Episode }) {
                 </svg>
                 {isPlaying ? 'Pause' : 'Play episode'}
               </button>
-              <IconBtn label="Share"><ShareIcon /></IconBtn>
-              {episode.audioUrl && <IconBtn label="Download"><DownloadIcon /></IconBtn>}
+              <IconBtn label="Share" className="cc-btn-icon"><ShareIcon /></IconBtn>
+              {episode.audioUrl && <IconBtn label="Download" className="cc-btn-icon"><DownloadIcon /></IconBtn>}
             </div>
           </div>
 
-          {/* Right column — 16:9 art card */}
-          <div style={{
+          {/* Right column — 16:9 art card (hidden on mobile) */}
+          <div className="cc-episode-hero-art" style={{
             aspectRatio: '16 / 9',
             borderRadius: 'var(--radius-lg)',
             overflow: 'hidden',
@@ -217,7 +218,7 @@ function VideoTab({ episode }: { episode: Episode }) {
         title={episode.title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        style={{ width: '100%', aspectRatio: '16 / 9', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', display: 'block' }}
+        style={{ width: '100%', maxWidth: '100%', aspectRatio: '16 / 9', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', display: 'block' }}
       />
       <a
         href="https://www.youtube.com/@ConstructionCEO?sub_confirmation=1"
@@ -310,9 +311,9 @@ function Sidebar({ episode, related }: { episode: Episode; related: Episode[] })
   const guestRole = [episode.guestTitle, episode.guestCompany].filter(Boolean).join(' · ')
 
   return (
-    <aside style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+    <aside className="cc-episode-sidebar" style={{ flexDirection: 'column', gap: 20 }}>
       {/* Guest card */}
-      <div style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', background: 'var(--surface-card)', padding: 24 }}>
+      <div className="cc-episode-guest-card" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', background: 'var(--surface-card)', padding: 24 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
           <Avatar name={episode.guestName} size={52} duotone />
           <div>
@@ -341,7 +342,7 @@ function Sidebar({ episode, related }: { episode: Episode; related: Episode[] })
 
       {/* Related episodes */}
       {related.length > 0 && (
-        <div style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', background: 'var(--surface-card)', padding: 24 }}>
+        <div className="cc-episode-related" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', background: 'var(--surface-card)', padding: 24 }}>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 16 }}>
             Related episodes
           </p>
@@ -374,7 +375,7 @@ function Sidebar({ episode, related }: { episode: Episode; related: Episode[] })
 }
 
 /* ---- Root ---- */
-export default function EpisodeClient({ episode, related }: { episode: Episode; related: Episode[] }) {
+export default function EpisodeClient({ episode, related, episodeNumber }: { episode: Episode; related: Episode[]; episodeNumber?: number }) {
   const [tab, setTab] = useState('notes')
   const hasTranscript = !!episode.transcript
 
@@ -386,10 +387,10 @@ export default function EpisodeClient({ episode, related }: { episode: Episode; 
 
   return (
     <>
-      <EpisodeHero episode={episode} />
+      <EpisodeHero episode={episode} episodeNumber={episodeNumber} />
 
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '48px 28px', display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 56, alignItems: 'start' }}>
-        <div>
+      <section className="cc-episode-layout" style={{ maxWidth: 1180, margin: '0 auto', padding: '48px 28px' }}>
+        <div className="cc-episode-tabs-div">
           <Tabs value={tab} onChange={setTab} items={tabItems} style={{ marginBottom: 32 }} />
           {tab === 'notes' && <ShowNotes episode={episode} />}
           {tab === 'video' && <VideoTab episode={episode} />}

@@ -26,7 +26,7 @@ function classes(variant: BaseProps['variant'] = 'primary', className = '') {
       'border border-[var(--border)] bg-transparent text-[var(--text-strong)] hover:border-[var(--border-strong)] hover:bg-[var(--surface-sunken)]',
     ghost: 'text-[var(--text-strong)] hover:bg-[var(--surface-sunken)]',
     inverse:
-      'border border-[var(--border-inverse)] bg-transparent text-[var(--paper-50)] hover:bg-white/10',
+      'border border-[var(--border-inverse)] bg-transparent !text-white hover:bg-white/10',
   }
 
   return `${base} ${variants[variant]} ${className}`.trim()

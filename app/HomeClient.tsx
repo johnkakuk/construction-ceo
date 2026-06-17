@@ -7,6 +7,7 @@ import EpisodeCard from '@/components/EpisodeCard'
 import { Avatar } from '@/components/ds/Avatar'
 import { useAudio } from './AudioProvider'
 import type { Episode } from '@/lib/data'
+import { MarqueeText } from '@/components/ds/MarqueeText'
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -78,7 +79,7 @@ function Hero({ episode }: { episode: Episode }) {
     <section className="theme-dark" style={{ background: 'var(--ink-900)', color: 'var(--paper)', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'repeating-linear-gradient(120deg, rgba(255,255,255,0.008) 0 18px, transparent 18px 40px)' }} />
       <div style={{ position: 'absolute', top: -120, right: -80, width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(192,132,62,0.16), transparent 65%)' }} />
-      <div style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '64px 28px', display: 'grid', gridTemplateColumns: '1.35fr 1fr', gap: 56, alignItems: 'center' }}>
+      <div className="cc-home-hero-grid" style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', padding: '64px 28px' }}>
         <div>
           <div className="cc-eyebrow" style={{ color: 'var(--ochre-400)', marginBottom: 18 }}>
             Latest episode{episode.duration ? ` · ${episode.duration}` : ''}
@@ -96,7 +97,7 @@ function Hero({ episode }: { episode: Episode }) {
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--steel-400)' }}>{guestRole}</div>
             </div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <div className="cc-btn-row" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <DSButton
               variant="primary"
               size="lg"
@@ -124,7 +125,7 @@ function Hero({ episode }: { episode: Episode }) {
           </div>
         </div>
 
-        <div>
+        <div className="cc-home-hero-image">
           <div style={{
             aspectRatio: '16 / 9',
             borderRadius: 'var(--radius-lg)',
@@ -153,12 +154,14 @@ function EpisodeList({ episodes, total }: { episodes: Episode[]; total: number }
 
   return (
     <section style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 28px' }}>
-      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
+      <div className="cc-episode-list-header" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
         <div>
           <div className="cc-eyebrow" style={{ marginBottom: 10 }}>The archive · {total} episodes</div>
           <h2 style={{ fontSize: 34, fontWeight: 800, letterSpacing: '-0.02em', margin: 0 }}>Recent conversations</h2>
         </div>
-        <DSButton variant="ghost" rightIcon={<ArrowIcon />} href="/podcast">Browse all</DSButton>
+        <span className="cc-browse-all-top">
+          <DSButton variant="ghost" rightIcon={<ArrowIcon />} href="/podcast">Browse all</DSButton>
+        </span>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -173,6 +176,10 @@ function EpisodeList({ episodes, total }: { episodes: Episode[]; total: number }
           />
         ))}
       </div>
+
+      <div className="cc-browse-all-bottom" style={{ marginTop: 20 }}>
+        <DSButton variant="ghost" rightIcon={<ArrowIcon />} href="/podcast">Browse all</DSButton>
+      </div>
     </section>
   )
 }
@@ -181,7 +188,7 @@ function EpisodeList({ episodes, total }: { episodes: Episode[]; total: number }
 function Newsletter() {
   return (
     <section style={{ borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', background: 'var(--surface-raised)' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+      <div className="cc-newsletter-grid" style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 28px' }}>
         <div>
           <div className="cc-eyebrow" style={{ marginBottom: 12 }}>The Brief</div>
           <h3 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.01em', marginBottom: 8 }}>One signal-dense email per episode.</h3>
@@ -189,10 +196,11 @@ function Newsletter() {
             The argument, the numbers, and the one decision worth stealing — for operators who don&apos;t have an hour.
           </p>
         </div>
-        <form style={{ display: 'flex', gap: 10 }} onSubmit={(e) => e.preventDefault()}>
+        <form className="cc-newsletter-form" style={{ display: 'flex', gap: 10 }} onSubmit={(e) => e.preventDefault()}>
           <input
             type="email"
             placeholder="you@firm.com"
+            className="cc-newsletter-email"
             style={{
               flex: 1, height: 40, padding: '0 14px',
               fontFamily: 'var(--font-sans)', fontSize: 14, color: 'var(--text-strong)',

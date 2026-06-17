@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Fuse from 'fuse.js'
+import { MarqueeText } from './ds/MarqueeText'
 
 type EpisodeIndex = {
   slug: string
@@ -171,9 +172,9 @@ export default function SearchModal({ open, onClose }: Props) {
                       </svg>
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-strong)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <MarqueeText style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-strong)' }}>
                         {ep.title}
-                      </div>
+                      </MarqueeText>
                       {(ep.guestName || role) && (
                         <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 1 }}>
                           {ep.guestName}{role ? ` · ${role}` : ''}

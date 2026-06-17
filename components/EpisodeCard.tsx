@@ -6,6 +6,7 @@ import { Avatar } from './ds/Avatar'
 import { Tag } from './ds/Tag'
 import { Timestamp } from './ds/Timestamp'
 import PlayButton from './PlayButton'
+import { MarqueeText } from './ds/MarqueeText'
 import type { Episode } from '@/lib/data'
 
 type EpisodeCardProps = {
@@ -64,7 +65,7 @@ export default function EpisodeCard({ episode, layout = 'row', number, playing =
           </h3>
 
           {/* Action row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+          <div className="cc-btn-row" style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
             <button
               onClick={(e) => { e.stopPropagation(); onPlay?.() }}
               style={{
@@ -149,7 +150,7 @@ export default function EpisodeCard({ episode, layout = 'row', number, playing =
             EP {number}
           </div>
         )}
-        <div style={{
+        <MarqueeText style={{
           fontFamily: 'var(--font-display)',
           fontWeight: 700,
           fontSize: 'var(--text-lg)',
@@ -157,19 +158,15 @@ export default function EpisodeCard({ episode, layout = 'row', number, playing =
           letterSpacing: '-0.012em',
           color: 'var(--text-strong)',
           marginBottom: 4,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
         }}>
           {episode.title}
-        </div>
-        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {episode.guestName || 'Construction CEO'}
-          {guestRole ? ` — ${guestRole}` : ''}
-        </div>
+        </MarqueeText>
+        <MarqueeText style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
+          {`${episode.guestName || 'Construction CEO'}${guestRole ? ` — ${guestRole}` : ''}`}
+        </MarqueeText>
       </div>
       {episode.duration && (
-        <div style={{ flexShrink: 0, alignSelf: 'flex-start', paddingTop: 4 }}>
+        <div className="cc-episode-duration" style={{ flexShrink: 0, alignSelf: 'flex-start', paddingTop: 4 }}>
           <Timestamp>{episode.duration}</Timestamp>
         </div>
       )}

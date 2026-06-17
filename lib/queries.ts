@@ -80,6 +80,20 @@ export async function getRelatedEpisodes(slugs: string[] = [], currentSlug?: str
   return [...pool].sort(() => Math.random() - 0.5).slice(0, 3)
 }
 
+export async function getEpisodeNumber(slug: string): Promise<{ number: number; total: number }> {
+  if (!isSanityConfigured) {
+    const sorted = [...dummyEpisodes].reverse() // dummy data is desc; reverse = asc = oldest first
+    const idx = sorted.findIndex((e) => e.slug === slug)
+    return { number: idx === -1 ? 1 : idx + 1, total: dummyEpisodes.length }
+  }
+  const results = await getClient().fetch<{ slug: string }[]>(
+    `*[_type == "episode"] | order(coalesce(publishedAt, _createdAt) asc) { "slug": slug.current }`
+  )
+  const slugs = results.map((r) => r.slug)
+  const idx = slugs.indexOf(slug)
+  return { number: idx === -1 ? slugs.length : idx + 1, total: slugs.length }
+}
+
 export async function getAllEpisodeSlugs(): Promise<string[]> {
   if (!isSanityConfigured) return dummyEpisodes.map((e) => e.slug)
 

@@ -52,7 +52,7 @@ export default function Footer() {
 
           {/* Brand block */}
           <div style={{ maxWidth: 320 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
+            <span className="cc-footer-brand" style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
               <Logo variant="monogram" size={48} />
               <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--concrete-300)' }}>

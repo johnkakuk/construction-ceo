@@ -34,6 +34,92 @@
 }
 
 
+/* ---- Episode row: hide duration on very small screens ---- */
+@media (max-width: 400px) {
+  .cc-episode-duration  { display: none; }
+  .cc-browse-all-top    { display: none; }
+  .cc-browse-all-bottom { margin-left: -18px; }
+  .cc-newsletter-form   { flex-direction: column; }
+  .cc-newsletter-email  { height: auto !important; padding: 12px 14px !important; }
+}
+@media (min-width: 401px) {
+  .cc-browse-all-bottom { display: none; }
+}
+
+/* ---- Button rows: stack to full-width column when tight ---- */
+@media (max-width: 480px) {
+  .cc-btn-row { flex-wrap: wrap; }
+  .cc-btn-row > *:not(.cc-btn-icon) {
+    flex: 1 1 100%;
+    min-width: 0 !important;
+    justify-content: center;
+  }
+}
+
+/* ---- Footer brand logo: scale down on narrow screens ---- */
+@media (max-width: 520px) {
+  .cc-footer-brand { transform: scale(0.8); transform-origin: left center; }
+}
+
+/* ---- Nav logo wordmark — hide below 481px only ---- */
+.cc-nav-wordmark { display: inline-flex; align-items: center; }
+@media (max-width: 480px) { .cc-nav-wordmark { display: none; } }
+
+/* ---- Marquee animation ---- */
+@keyframes cc-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---- Responsive layout grids ---- */
+.cc-episode-hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.cc-episode-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.cc-episode-sidebar  { display: flex; }
+.cc-episode-tabs-div { min-width: 0; }
+.cc-home-hero-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.cc-newsletter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .cc-episode-hero-grid { display: block; }
+  .cc-episode-hero-art  { display: none; }
+
+  .cc-episode-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .cc-episode-sidebar    { display: contents; }
+  .cc-episode-guest-card { order: -2; }
+  .cc-episode-tabs-div   { order: -1; }
+  .cc-episode-related    { order: 1; }
+
+  .cc-home-hero-grid  { display: block; }
+  .cc-home-hero-image { display: none; }
+
+  .cc-newsletter-grid { display: block; }
+  .cc-newsletter-grid > * + * { margin-top: 28px; }
+}
+
 /* react-h5-audio-player skin */
 .rhap_container.cc-audio-player {
   border: 1px solid var(--border);
