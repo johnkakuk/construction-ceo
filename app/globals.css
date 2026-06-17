@@ -24,6 +24,8 @@
   --radius-pill: 9999px;
 }
 
+html, body { overflow-x: hidden; }
+
 .cc-container {
   width: min(100% - 56px, 1200px);
   margin-inline: auto;
