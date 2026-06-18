@@ -13,9 +13,13 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
 
   return (
     <AudioProvider>
-      <Nav />
-      <main>{children}</main>
-      <Footer />
+      <div style={{ position: 'relative' }}>
+        {/* Black underlay at top of document — scrolls away, making header appear solid black when at top */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 68, background: '#000', zIndex: 1 }} />
+        <Nav />
+        <main>{children}</main>
+        <Footer />
+      </div>
     </AudioProvider>
   )
 }
