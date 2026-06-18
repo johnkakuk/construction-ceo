@@ -169,6 +169,13 @@ export default function Nav() {
           <div style={{ flex: 1 }} />
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {/* Search — desktop only, left of nav links */}
+            <span className="hidden md:inline-flex">
+              <IconButton label="Search episodes" variant="inverse" onClick={() => setSearchOpen(true)}>
+                <SearchIcon />
+              </IconButton>
+            </span>
+
             {/* Desktop nav links */}
             <nav className="hidden md:flex" style={{ gap: 6, marginRight: 12 }}>
               {links.map((link) => {
@@ -214,9 +221,12 @@ export default function Nav() {
               Subscribe
             </Link>
 
-            <IconButton label="Search episodes" variant="inverse" onClick={() => setSearchOpen(true)}>
-              <SearchIcon />
-            </IconButton>
+            {/* Search — mobile only, right of Subscribe */}
+            <span className="flex md:hidden">
+              <IconButton label="Search episodes" variant="inverse" onClick={() => setSearchOpen(true)}>
+                <SearchIcon />
+              </IconButton>
+            </span>
 
             {/* Hamburger — mobile only */}
             <button
