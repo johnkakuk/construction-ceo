@@ -26,6 +26,26 @@
 
 html, body { overflow-x: hidden; }
 
+/* ---- Audio player bar spacer ---- */
+.cc-player-spacer        { padding-bottom: 78px; }
+.cc-player-progress-line { display: none; }
+
+/* ≤ 1000px — swap waveform for slim progress line */
+@media (max-width: 1000px) {
+  .cc-player-progress-line { display: block; }
+  .cc-player-scrubber      { display: none !important; }
+  .cc-player-bar           { gap: 28px !important; }
+  .cc-player-info          { flex: 1 1 0 !important; width: auto !important; }
+  .cc-player-right         { flex: 0 0 auto !important; }
+}
+
+/* ≤ 500px — drop skip + speed, tighten padding */
+@media (max-width: 500px) {
+  .cc-player-bar   { gap: 12px !important; padding: 12px 14px !important; }
+  .cc-player-skip  { display: none; }
+  .cc-player-speed { display: none !important; }
+}
+
 .cc-container {
   width: min(100% - 56px, 1200px);
   margin-inline: auto;
@@ -69,8 +89,9 @@ html, body { overflow-x: hidden; }
 
 /* ---- Marquee animation ---- */
 @keyframes cc-marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%      { transform: translateX(0); }
+  6.67%   { transform: translateX(0); }
+  100%    { transform: translateX(-50%); }
 }
 
 /* ---- Responsive layout grids ---- */

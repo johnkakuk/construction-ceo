@@ -131,7 +131,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AudioContext.Provider value={{ playingSlug, playing, hasPlayed, currentTime, duration, toggle, seek, playFrom }}>
-      <div style={{ paddingBottom: hasPlayed ? 78 : 0 }}>
+      <div className={hasPlayed ? 'cc-player-spacer' : ''}>
         {children}
       </div>
       {hasPlayed && barEpisode && (

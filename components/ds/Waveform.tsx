@@ -1,7 +1,9 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
+
+const BAR_UNIT = 5 // 3px bar + 2px gap
 
 type WaveformProps = {
   progress?: number
@@ -22,16 +24,31 @@ export function Waveform({
   onSeek,
   style,
 }: WaveformProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [barCount, setBarCount] = useState(bars)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    function measure() {
+      if (el) setBarCount(Math.max(5, Math.floor(el.clientWidth / BAR_UNIT)))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
   const heights = useMemo(() => {
     const out: number[] = []
-    for (let i = 0; i < bars; i++) {
+    for (let i = 0; i < barCount; i++) {
       const v = Math.abs(Math.sin(i * 12.9898) * 43758.5453)
       const frac = v - Math.floor(v)
-      const env = 0.45 + 0.55 * Math.sin((i / bars) * Math.PI)
+      const env = 0.45 + 0.55 * Math.sin((i / barCount) * Math.PI)
       out.push(0.25 + frac * 0.75 * env)
     }
     return out
-  }, [bars])
+  }, [barCount])
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!onSeek) return
@@ -41,6 +58,7 @@ export function Waveform({
 
   return (
     <div
+      ref={containerRef}
       onClick={handleClick}
       style={{
         display: 'flex',
@@ -52,7 +70,7 @@ export function Waveform({
       }}
     >
       {heights.map((h, i) => {
-        const played = i / bars <= progress
+        const played = i / barCount <= progress
         return (
           <span
             key={i}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import PlayButton from '@/components/PlayButton'
 import EpisodeCard from '@/components/EpisodeCard'
@@ -74,6 +74,8 @@ function Hero({ episode }: { episode: Episode }) {
   const { playingSlug, toggle } = useAudio()
   const playing = playingSlug === episode.slug
   const guestRole = [episode.guestTitle, episode.guestCompany].filter(Boolean).join(' · ')
+  const [summaryExpanded, setSummaryExpanded] = useState(false)
+  const summaryRef = useRef<HTMLParagraphElement>(null)
 
   return (
     <section className="theme-dark" style={{ background: 'var(--ink-900)', color: 'var(--paper)', position: 'relative', overflow: 'hidden' }}>
@@ -87,9 +89,40 @@ function Hero({ episode }: { episode: Episode }) {
           <h1 style={{ fontSize: 'clamp(36px, 4vw, 56px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.02, color: 'var(--paper)', marginBottom: 20, maxWidth: '15ch' }}>
             {episode.title}
           </h1>
-          <p style={{ fontSize: 18, lineHeight: 1.6, color: 'var(--steel-300)', maxWidth: '52ch', marginBottom: 28 }}>
-            {episode.summary}
-          </p>
+          <div style={{
+            position: 'relative',
+            maxHeight: summaryExpanded ? (summaryRef.current?.scrollHeight ?? 2000) + 'px' : '144px',
+            overflow: 'hidden',
+            transition: 'max-height 400ms ease',
+            marginBottom: 4,
+          }}>
+            <p ref={summaryRef} style={{ fontSize: 18, lineHeight: 1.6, color: 'var(--steel-300)', maxWidth: '52ch', margin: 0 }}>
+              {episode.summary}
+            </p>
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              height: '57.6px',
+              background: 'linear-gradient(to bottom, transparent, var(--ink-900))',
+              pointerEvents: 'none',
+              opacity: summaryExpanded ? 0 : 1,
+              transition: 'opacity 300ms ease',
+            }} />
+          </div>
+          <button
+            type="button"
+            onClick={() => setSummaryExpanded(v => !v)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              background: 'none', border: 'none', padding: 0, marginBottom: 24,
+              fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: 600,
+              color: 'var(--ochre-400)', cursor: 'pointer', letterSpacing: '0.01em',
+            }}
+          >
+            {summaryExpanded ? 'View less' : 'View more'}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 200ms ease', transform: summaryExpanded ? 'rotate(180deg)' : 'none' }}>
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 30 }}>
             <Avatar name={episode.guestName} size={44} duotone />
             <div>

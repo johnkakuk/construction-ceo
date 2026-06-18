@@ -17,7 +17,7 @@ export default function About() {
           <div className="py-16">
             <span className="cc-tick mb-5 block" />
             <p className="cc-eyebrow mb-4" style={{ color: 'var(--ochre-400)' }}>About</p>
-            <h1 className="font-display text-5xl font-black leading-tight tracking-[-0.035em]" style={{ color: 'var(--paper-50)' }}>
+            <h1 className="font-display font-black leading-tight tracking-[-0.035em]" style={{ fontSize: 'clamp(36px, 4vw, 56px)', color: 'var(--paper-50)' }}>
               The show
             </h1>
           </div>
