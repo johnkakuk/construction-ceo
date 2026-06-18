@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 import { IconButton } from './ds/IconButton'
-import SearchModal from './SearchModal'
+import dynamic from 'next/dynamic'
+const SearchModal = dynamic(() => import('./SearchModal'), { ssr: false })
 
 const links = [
   { label: 'Home', href: '/', exact: true },

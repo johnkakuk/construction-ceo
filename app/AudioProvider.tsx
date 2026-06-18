@@ -1,7 +1,8 @@
 'use client'
 
 import { createContext, useContext, useState, useRef, useEffect } from 'react'
-import { AudioPlayerBar } from '@/components/ds/AudioPlayerBar'
+import dynamic from 'next/dynamic'
+const AudioPlayerBar = dynamic(() => import('@/components/ds/AudioPlayerBar').then(m => m.AudioPlayerBar), { ssr: false })
 import type { Episode } from '@/lib/data'
 
 type AudioContextValue = {
