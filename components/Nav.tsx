@@ -8,6 +8,7 @@ import { IconButton } from './ds/IconButton'
 import SearchModal from './SearchModal'
 
 const links = [
+  { label: 'Home', href: '/', exact: true },
   { label: 'Episodes', href: '/podcast' },
   { label: 'About', href: '/about' },
 ]
@@ -20,45 +21,35 @@ const SearchIcon = () => (
 )
 
 function HamburgerIcon({ open }: { open: boolean }) {
+  const bar: React.CSSProperties = {
+    display: 'block', width: '100%', height: 1.5,
+    background: 'var(--paper-50)', borderRadius: 1,
+    transition: 'transform 220ms ease',
+    transformOrigin: 'center',
+  }
   return (
     <div style={{ width: 22, height: 16, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <span style={{ ...bar, transform: open ? 'translateY(7.25px) rotate(45deg)' : 'none' }} />
       <span style={{
-        display: 'block', width: '100%', height: 1.5,
-        background: 'var(--paper-50)', borderRadius: 1,
-        transition: 'transform 220ms ease',
-        transformOrigin: 'center',
-        transform: open ? 'translateY(7.25px) rotate(45deg)' : 'none',
-      }} />
-      <span style={{
-        display: 'block', width: '100%', height: 1.5,
-        background: 'var(--paper-50)', borderRadius: 1,
-        transition: 'opacity 150ms ease',
+        ...bar,
+        transition: 'visibility 0ms, opacity 150ms ease',
         opacity: open ? 0 : 1,
+        visibility: open ? 'hidden' : 'visible',
       }} />
-      <span style={{
-        display: 'block', width: '100%', height: 1.5,
-        background: 'var(--paper-50)', borderRadius: 1,
-        transition: 'transform 220ms ease',
-        transformOrigin: 'center',
-        transform: open ? 'translateY(-7.25px) rotate(-45deg)' : 'none',
-      }} />
+      <span style={{ ...bar, transform: open ? 'translateY(-7.25px) rotate(-45deg)' : 'none' }} />
     </div>
   )
 }
 
 function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () => void; pathname: string }) {
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [open])
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop — starts below header */}
       <div
         onClick={onClose}
         style={{
-          position: 'fixed', inset: 0, zIndex: 40,
+          position: 'fixed', inset: 0, zIndex: 29,
           background: 'rgba(15,14,11,0.6)',
           backdropFilter: 'blur(2px)',
           WebkitBackdropFilter: 'blur(2px)',
@@ -68,13 +59,14 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
         }}
       />
 
-      {/* Drawer panel */}
+      {/* Drawer panel — slides in from right, below header */}
       <div
         style={{
-          position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 41,
+          position: 'fixed', top: 68, right: 0, bottom: 0, zIndex: 41,
           width: 280,
-          background: 'var(--ink-900)',
+          background: 'rgba(10,9,6,0.88)',
           borderLeft: '1px solid rgba(255,255,255,0.08)',
+          borderTop: '1px solid rgba(255,255,255,0.08)',
           transform: open ? 'translateX(0)' : 'translateX(100%)',
           transition: 'transform 280ms cubic-bezier(0.32, 0, 0.15, 1)',
           display: 'flex',
@@ -83,16 +75,10 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
           overflowY: 'auto',
         }}
       >
-        {/* Full logo */}
-        <Link href="/" onClick={onClose} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 40, textDecoration: 'none' }}>
-          <Logo variant="monogram" size={32} />
-          <Logo variant="wordmark" size={24} tone="dark" />
-        </Link>
-
         {/* Nav links */}
         <nav style={{ display: 'flex', flexDirection: 'column' }}>
           {links.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(link.href + '/')
+            const active = link.exact ? pathname === link.href : pathname === link.href || pathname.startsWith(link.href + '/')
             return (
               <Link
                 key={link.label}
@@ -140,18 +126,10 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
 
 export default function Nav() {
   const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => { setMenuOpen(false) }, [pathname])
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -172,11 +150,10 @@ export default function Nav() {
           position: 'sticky',
           top: 0,
           zIndex: 30,
-          background: scrolled ? 'rgba(22,20,15,0.72)' : 'var(--ink-950)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
+          background: 'rgba(10,9,6,0.88)',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
           borderBottom: '1px solid rgba(255,255,255,0.10)',
-          transition: 'background 200ms ease-out',
         }}
       >
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px', height: 68, display: 'flex', alignItems: 'center' }}>
@@ -195,7 +172,7 @@ export default function Nav() {
             {/* Desktop nav links */}
             <nav className="hidden md:flex" style={{ gap: 6, marginRight: 12 }}>
               {links.map((link) => {
-                const active = pathname === link.href || pathname.startsWith(link.href + '/')
+                const active = link.exact ? pathname === link.href : pathname === link.href || pathname.startsWith(link.href + '/')
                 return (
                   <Link
                     key={link.label}
@@ -215,15 +192,11 @@ export default function Nav() {
               })}
             </nav>
 
-            <IconButton label="Search episodes" variant="inverse" onClick={() => setSearchOpen(true)}>
-              <SearchIcon />
-            </IconButton>
-
-            {/* Subscribe — desktop only */}
+            {/* Subscribe — all screen sizes */}
             <Link
               href="/subscribe"
-              className="hidden md:inline-flex"
               style={{
+                display: 'inline-flex',
                 alignItems: 'center',
                 height: 32,
                 padding: '0 12px',
@@ -240,6 +213,10 @@ export default function Nav() {
             >
               Subscribe
             </Link>
+
+            <IconButton label="Search episodes" variant="inverse" onClick={() => setSearchOpen(true)}>
+              <SearchIcon />
+            </IconButton>
 
             {/* Hamburger — mobile only */}
             <button
