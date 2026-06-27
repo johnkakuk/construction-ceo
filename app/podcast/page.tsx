@@ -22,7 +22,7 @@ export default async function Podcast() {
           <span className="cc-tick mb-5 block" />
           <p className="cc-eyebrow mb-10" style={{ color: 'var(--ochre-400)' }}>The archive · {episodes.length} episodes</p>
           <h1 className="max-w-3xl font-display font-black leading-tight tracking-[-0.035em]" style={{ fontSize: 'clamp(36px, 4vw, 56px)', color: 'var(--paper-50)' }}>
-            Long-form conversations with commercial construction leaders.
+            Long-form conversations with construction leaders.
           </h1>
         </div>
       </section>

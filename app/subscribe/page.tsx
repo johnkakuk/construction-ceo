@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import PlatformCards from './PlatformCards'
-import NewsletterForm from './NewsletterForm'
+import Newsletter from '@/components/Newsletter'
 
 export const metadata: Metadata = {
   title: 'Subscribe — Construction CEO',
@@ -22,7 +22,7 @@ export default function Subscribe() {
             Listen wherever you get your podcasts.
           </h1>
           <p style={{ fontSize: 18, lineHeight: 1.65, color: 'var(--steel-300)', maxWidth: '46ch', margin: '0 auto' }}>
-            New episodes drop regularly. Subscribe so you never miss a conversation.
+            New episodes are released regularly. Subscribe so you never miss a conversation.
           </p>
         </div>
       </section>
@@ -32,21 +32,7 @@ export default function Subscribe() {
         <PlatformCards />
       </section>
 
-      {/* Newsletter strip */}
-      <section style={{ borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', background: 'var(--surface-raised)' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 28px' }}>
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 10 }}>
-            The Brief
-          </p>
-          <h2 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.01em', marginBottom: 8, color: 'var(--text-strong)' }}>
-            Prefer email? Get the episode brief.
-          </h2>
-          <p style={{ fontSize: 15, color: 'var(--text-muted)', marginBottom: 20, maxWidth: '48ch' }}>
-            The argument, the numbers, and the one decision worth stealing — delivered after every episode.
-          </p>
-          <NewsletterForm />
-        </div>
-      </section>
+      <Newsletter />
     </>
   )
 }

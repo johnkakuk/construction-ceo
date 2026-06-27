@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Logo from './Logo'
 import { IconButton } from './ds/IconButton'
 import dynamic from 'next/dynamic'
 const SearchModal = dynamic(() => import('./SearchModal'), { ssr: false })
@@ -159,12 +158,9 @@ export default function Nav() {
       >
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 28px', height: 68, display: 'flex', alignItems: 'center' }}>
 
-          {/* Logo — wordmark hidden on mobile */}
-          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-            <Logo variant="monogram" size={34} />
-            <span className="cc-nav-wordmark">
-              <Logo variant="wordmark" size={28} tone="dark" />
-            </span>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Clip Water Mark White.png" alt="Construction CEO" style={{ height: 68 }} />
           </Link>
 
           <div style={{ flex: 1 }} />

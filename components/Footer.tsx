@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Logo from './Logo'
 
 const AppleIcon = () => (
   <svg width="11" height="13" viewBox="0 0 814 1000" fill="currentColor">
@@ -52,17 +51,12 @@ export default function Footer() {
 
           {/* Brand block */}
           <div style={{ maxWidth: 320 }}>
-            <span className="cc-footer-brand" style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
-              <Logo variant="monogram" size={48} />
-              <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--concrete-300)' }}>
-                  The podcast for industry leaders
-                </span>
-                <Logo variant="wordmark" size={38} tone="dark" />
-              </span>
+            <span className="cc-footer-brand" style={{ display: 'inline-flex', alignItems: 'center' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/Clip Water Mark White.png" alt="Construction CEO" style={{ height: 68 }} />
             </span>
-            <p style={{ fontSize: 14, color: 'var(--steel-400)', marginTop: 16, lineHeight: 1.6 }}>
-              Candid, long-form conversations with the leaders shaping commercial and industrial construction.
+            <p style={{ fontSize: 14, color: 'var(--steel-400)', marginTop: 0, lineHeight: 1.6 }}>
+              Long-form conversations with the leaders shaping commercial, industrial, and heavy civil construction.
             </p>
             <div style={{ display: 'flex', gap: 8, marginTop: 20, flexWrap: 'wrap' }}>
               {platformButtons.map(({ label, href, icon }) => (
@@ -104,9 +98,8 @@ export default function Footer() {
         </div>
 
         <div style={{ margin: '36px 0 20px', height: 1, background: 'var(--border-inverse)' }} />
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--steel-500)', letterSpacing: '0.04em' }}>
-          <span>© {new Date().getFullYear()} Construction CEO</span>
-          <span>Built, not hyped.</span>
+        <div style={{ textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--steel-500)', letterSpacing: '0.04em' }}>
+          © {new Date().getFullYear()} Construction CEO
         </div>
       </div>
     </footer>

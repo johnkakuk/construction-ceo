@@ -36,6 +36,7 @@ const episodeCardFields = `
   publishedAt,
   duration,
   audioUrl,
+  youtubeId,
   featuredImage {
     alt,
     "url": asset->url

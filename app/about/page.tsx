@@ -31,7 +31,7 @@ export default function About() {
           {/* Left: text */}
           <div>
             <p style={{ fontSize: 'clamp(20px, 2.2vw, 26px)', fontWeight: 500, lineHeight: 1.55, color: 'var(--text-strong)', maxWidth: '52ch', marginBottom: '2.5rem' }}>
-              Construction CEO exists because the most important conversations in commercial construction never make it onto a stage, into a trade publication, or through a PR filter.
+              Construction CEO is a long-form, in-person podcast hosted by Jonathan Cor featuring candid conversations with executives leading commercial, industrial, and heavy civil construction companies. We talk leadership, lessons learned, failure, and the realities of building and running firms at scale.
             </p>
             <div style={{ width: 48, height: 2, background: 'var(--border-strong)', marginBottom: '2.5rem' }} />
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -52,8 +52,8 @@ export default function About() {
               <div style={{ position: 'relative' }}>
                 <p className="cc-eyebrow" style={{ color: 'var(--ochre-400)', marginBottom: 28 }}>What we cover</p>
                 {[
-                  'Leadership at scale',
-                  'Growth & capital strategy',
+                  'Founder stories',
+                  'Leading people',
                   'Operations, systems & hiring',
                   'Lessons from decades of execution',
                 ].map((topic, i, arr) => (
@@ -82,7 +82,7 @@ export default function About() {
         <div style={{ width: 240, height: 240, borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--border)', flexShrink: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=480&h=480&fit=crop&crop=face"
+            src="/images/Sized and scaled.png"
             alt="Jonathan — host of Construction CEO"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -97,9 +97,6 @@ export default function About() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} className="text-base leading-8 text-[var(--text-body)]">
             <p>
               Jonathan has spent years studying how commercial construction companies are built and led. His interviews are driven by curiosity about the operational and leadership realities that separate great firms from the rest.
-            </p>
-            <p>
-              The goal is simple: preserve and share executive insight from the leaders shaping the future of commercial and industrial construction.
             </p>
           </div>
         </div>

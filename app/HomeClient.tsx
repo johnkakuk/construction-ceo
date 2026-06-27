@@ -8,6 +8,7 @@ import { Avatar } from '@/components/ds/Avatar'
 import { useAudio } from './AudioProvider'
 import type { Episode } from '@/lib/data'
 import { MarqueeText } from '@/components/ds/MarqueeText'
+import Newsletter from '@/components/Newsletter'
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -167,13 +168,25 @@ function Hero({ episode }: { episode: Episode }) {
             position: 'relative',
             background: 'linear-gradient(155deg, #3a3f47, #20242b 55%, #14161a)',
           }}>
-            {episode.featuredImage?.url ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={episode.featuredImage.url} alt={episode.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(1) contrast(1.05) brightness(0.9)', mixBlendMode: 'luminosity' }} />
-            ) : null}
-<div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <PlayButton playing={playing} onToggle={() => toggle(episode)} size={72} />
-            </div>
+            {episode.youtubeId ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${episode.youtubeId}`}
+                title={episode.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+              />
+            ) : (
+              <>
+                {episode.featuredImage?.url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={episode.featuredImage.url} alt={episode.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(1) contrast(1.05) brightness(0.9)', mixBlendMode: 'luminosity' }} />
+                ) : null}
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <PlayButton playing={playing} onToggle={() => toggle(episode)} size={72} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -212,38 +225,6 @@ function EpisodeList({ episodes, total }: { episodes: Episode[]; total: number }
 
       <div className="cc-browse-all-bottom" style={{ marginTop: 20 }}>
         <DSButton variant="ghost" rightIcon={<ArrowIcon />} href="/podcast">Browse all</DSButton>
-      </div>
-    </section>
-  )
-}
-
-/* ---- Newsletter ---- */
-function Newsletter() {
-  return (
-    <section style={{ borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', background: 'var(--surface-raised)' }}>
-      <div className="cc-newsletter-grid" style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 28px' }}>
-        <div>
-          <div className="cc-eyebrow" style={{ marginBottom: 12 }}>The Brief</div>
-          <h3 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.01em', marginBottom: 8 }}>One signal-dense email per episode.</h3>
-          <p style={{ fontSize: 15, color: 'var(--text-muted)', maxWidth: '46ch', margin: 0 }}>
-            The argument, the numbers, and the one decision worth stealing — for operators who don&apos;t have an hour.
-          </p>
-        </div>
-        <form className="cc-newsletter-form" style={{ display: 'flex', gap: 10 }} onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="email"
-            placeholder="you@firm.com"
-            className="cc-newsletter-email"
-            style={{
-              flex: 1, height: 40, padding: '0 14px',
-              fontFamily: 'var(--font-sans)', fontSize: 14, color: 'var(--text-strong)',
-              background: 'var(--surface-card)', border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-sm)', outline: 'none',
-              transition: 'border-color 120ms ease-out',
-            }}
-          />
-          <DSButton variant="primary" type="submit" rightIcon={<ArrowIcon />}>Subscribe</DSButton>
-        </form>
       </div>
     </section>
   )
