@@ -49,7 +49,7 @@ export default function EpisodeCard({ episode, layout = 'row', number, playing =
         <div style={{ position: 'relative', aspectRatio: '16 / 9', background: 'var(--ink-800)' }}>
           {episode.featuredImage?.url ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={episode.featuredImage.url} alt={episode.featuredImage.alt || episode.title} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(1) contrast(1.05) brightness(0.9)' }} />
+            <img src={episode.featuredImage.url} alt={episode.featuredImage.alt || episode.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : null}
         </div>
 
