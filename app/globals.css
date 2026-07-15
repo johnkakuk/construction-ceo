@@ -116,10 +116,10 @@ html, body { overflow-x: clip; }
   align-items: center;
 }
 .cc-newsletter-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 48px;
 }
 
 @media (max-width: 767px) {
@@ -139,6 +139,9 @@ html, body { overflow-x: clip; }
   .cc-home-hero-grid  { display: block; }
   .cc-home-hero-image { display: none; }
 
+}
+
+@media (max-width: 880px) {
   .cc-newsletter-grid { display: block; }
   .cc-newsletter-grid > * + * { margin-top: 28px; }
 }
