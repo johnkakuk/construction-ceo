@@ -23,6 +23,6 @@ export async function POST(request: NextRequest) {
   if (res.ok) return NextResponse.json({ success: true })
 
   const body = await res.text()
-  console.error('[subscribe] Beehiiv API error:', res.status, body.slice(0, 300))
-  return NextResponse.json({ error: 'Subscription failed' }, { status: 502 })
+  console.error('[subscribe] Beehiiv API error:', res.status, body.slice(0, 500))
+  return NextResponse.json({ error: 'Subscription failed', status: res.status }, { status: 502 })
 }
